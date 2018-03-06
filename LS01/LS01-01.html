@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>canvas</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            canvasApp();
+        }
+
+        function canvasApp(){
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+            console.log(context.constructor);
+            console.log(context.__proto__);
+            
+            
+        }
+    </script>
 </head>
 <body>
-    
+    <div>
+        <canvas id="canvas" width="500" height="500" style="border:5px solid #ccc">
+            canvas
+        </canvas>
+    </div>
 </body>
 </html>
