@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.addEventListener('load', eventWindowLoaded, false);
+        function eventWindowLoaded(){
+            canvasApp();
+        }
+        function canvasApp(){
+            var theCanvas = document.getElementById('canvas');
+            theCanvas.width = 300;
+            theCanvas.height = 150;
+            var context = theCanvas.getContext('2d');
+            context.fillStyle="#ff0000";
+            context.fillRect(0,0,100,100);//填充
+            context.clearRect(25, 25, 50, 50);//清除
+            
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <canvas id="canvas" width="200px" height="200px" style="width:300px;height:150px;border:1px #ccc solid">
+
+        </canvas>
+    </div>
+</body>
+</html>
