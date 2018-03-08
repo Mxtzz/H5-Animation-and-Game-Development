@@ -16,15 +16,16 @@
             
             context.moveTo(100, 100);
             context.lineTo(200, 200);
-            context.lineWidth=10;
+            context.lineWidth=20;
             context.strokeStyle='#ff0000';
             context.stroke()
-
-            context.moveTo(120,120);
-            context.lineTo(350,350);
+   
+            context.beginPath();//没有beginpath，将从上一个图形起点开始
+            context.moveTo(150,150);
+            context.lineTo(350,350);    
             context.lineWidth = 10;
             context.strokeStyle = '#0000ff';
-            context.closePath();
+            // context.closePath();
             context.stroke();
         }
     </script>

@@ -13,15 +13,6 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
-            context.lineWidth=5;
-            context.strokeStyle='red';
-            // context.arc(圆心x，圆心y，半径，起始角，终止角)
-            context.arc(100, 100, 50, Math.PI / 180 * 0, Math.PI / 180 * 90, false);
-            context.stroke();
-            
-            context.beginPath();
-            context.arc(100, 250, 50, Math.PI / 180 * 0, Math.PI / 180 * 90, true);
-            context.stroke();
             
         }
 

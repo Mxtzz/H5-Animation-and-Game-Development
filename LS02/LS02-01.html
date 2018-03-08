@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Canvas画布宽高属性、样式宽高及拉伸效果</title>
     <script type="text/javascript">
-        window.addEventListener('load', eventWindowLoaded, false);
-        function eventWindowLoaded(){
-            canvasApp();
-        }
-        function canvasApp(){
-            var theCanvas = document.getElementById('canvas');
-            theCanvas.width = 300;
-            theCanvas.height = 150;
-            var context = theCanvas.getContext('2d');
-            context.fillStyle="#ff0000";
+        window.onload = function(){
+            //获得Canvas元素节点
+            let theCanvas = document.getElementById("canvas");
+            //获得和设置Canvas的图形上下文
+            let context = theCanvas.getContext("2d");
+            
+            context.fillStyle='#ff0000';
             context.fillRect(0,0,100,100);//填充
-            context.clearRect(25, 25, 50, 50);//清除
+            context.clearRect(25, 25, 50, 50);//掏空
+            //修改canvas宽高，会影响内容
             
         }
     </script>

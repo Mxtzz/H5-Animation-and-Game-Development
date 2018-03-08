@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Canvas</title>
+    <title>beginPath closePath</title>
     <script type="text/javascript">
         window.addEventListener('load', eventWindowLoaded, false);
         function eventWindowLoaded() {
@@ -13,14 +13,22 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
-            context.lineWidth=5;
+            
             context.strokeStyle='red';
-            // context.arc(圆心x，圆心y，半径，起始角，终止角)
-            context.arc(100, 100, 50, Math.PI / 180 * 0, Math.PI / 180 * 90, false);
+            context.lineWidth=10;
+            context.moveTo(50, 50);
+            context.lineTo(150, 150);
+            context.lineTo(50, 150);
+            context.closePath();//关闭路径，回到起点
             context.stroke();
             
             context.beginPath();
-            context.arc(100, 250, 50, Math.PI / 180 * 0, Math.PI / 180 * 90, true);
+            context.strokeStyle='blue';
+            context.lineWidth=10;
+            context.moveTo(50, 200);
+            context.lineTo(150, 250);
+            context.lineTo(50, 250);
+            context.closePath();
             context.stroke();
             
         }
