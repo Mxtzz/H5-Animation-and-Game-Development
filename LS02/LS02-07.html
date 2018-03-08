@@ -29,6 +29,12 @@
             context.moveTo(200, 200);
             context.quadraticCurveTo(300, 300, 400, 200);
             context.stroke();
+
+            context.beginPath();            
+            context.moveTo(40, 0);
+            context.bezierCurveTo(0, 40, 80, 50, 40, 100);
+            context.closePath();
+            context.stroke();
             
         }
 
