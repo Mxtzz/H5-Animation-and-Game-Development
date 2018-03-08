@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Canvas</title>
+    <title>Canvas画圆</title>
     <script type="text/javascript">
         window.addEventListener('load', eventWindowLoaded, false);
         function eventWindowLoaded() {
@@ -21,6 +21,11 @@
             
             context.beginPath();
             context.arc(100, 250, 50, Math.PI / 180 * 0, Math.PI / 180 * 90, true);
+            context.stroke();
+            
+            context.beginPath();
+            context.moveTo(200, 50);
+            context.arcTo(300, 50, 300, 150, 50);
             context.stroke();
             
         }
