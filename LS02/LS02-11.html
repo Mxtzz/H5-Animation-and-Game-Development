@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Canvas</title>
+    <title>Canvas阴影设置</title>
     <script type="text/javascript">
         window.addEventListener('load', eventWindowLoaded, false);
         function eventWindowLoaded() {
@@ -13,7 +13,25 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
+            //阴影设置参数
+            // context.shadowColor='color'; 阴影颜色
+            // context.shadowOffsetX=x; 向右偏移量
+            // context.shadowOffsetY=y; 向下偏移量
+            // context.shadowBlur=blur; 模糊级别
             
+            context.fillStyle='red';
+            context.shadowColor='black';
+            context.shadowOffsetX=10;
+            context.shadowOffsetY=10;
+            context.shadowBlur=1;//级别1
+            context.fillRect(50,50,150,150);
+
+            context.fillStyle='red';
+            context.shadowColor='black';
+            context.shadowOffsetX=10;
+            context.shadowOffsetY=10;
+            context.shadowBlur=10;//级别10
+            context.fillRect(250,50,150,150);
         }
 
     </script>

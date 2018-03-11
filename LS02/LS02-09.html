@@ -13,7 +13,42 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
-            
+
+            linearGradient();
+            radialGradient();
+
+            function linearGradient(){
+                var gr = context.createLinearGradient(200, 200, 300, 300);//过渡起点与终点坐标
+                context.lineWidth=5;
+                gr.addColorStop(0, 'rgb(255,0,0)');//结束点1
+                gr.addColorStop(0.5, 'rgb(0,255,0)');//结束点2
+                gr.addColorStop(1, 'rgb(255,0,0)');//结束点3
+
+                context.strokeStyle=gr;//描边
+                context.strokeRect(200, 200, 100, 100);
+                
+                var gr = context.createLinearGradient(200, 250, 300, 350);
+                gr.addColorStop(0, 'rgb(255,0,0)');
+                gr.addColorStop(1, 'rgb(0,255,0)');
+                context.fillStyle = gr;//填充
+                context.fillRect(200 + 20, 200 + 20, 100 - 40, 100 - 40);
+            }
+            //圆形过渡
+            function radialGradient() {
+                //开始圆x，开始圆y，开始圆r，结束圆x，结束圆y，结束圆r
+                var gr = context.createRadialGradient(50, 50, 25, 100, 100, 100);
+                gr.addColorStop(0, 'rgb(255,0,0)');
+                gr.addColorStop(0.5, 'rgb(0,255,0)');
+                gr.addColorStop(1, 'rgb(255,0,0)');
+                context.fillStyle = gr;
+
+                context.arc(100, 100, 100, (Math.PI / 180) * 0, (Math.PI / 180) * 360, false);
+                context.fill();
+
+                context.strokeStyle = gr;
+                context.arc(100, 100, 50, (Math.PI / 180) * 0, (Math.PI / 180) * 360, false);
+                context.stroke();
+            }
         }
 
     </script>

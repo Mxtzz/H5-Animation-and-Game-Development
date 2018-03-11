@@ -13,7 +13,17 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
-            
+
+            theCanvas.onmouseup = function (e) {
+                //鼠标点击的位置，注意坐标补偿
+                var x = e.clientX - theCanvas.getBoundingClientRect().left;
+                var y = e.clientY - theCanvas.getBoundingClientRect().top;
+                console.log(x,y);
+                // console.log(theCanvas.getBoundingClientRect().left,theCanvas.getBoundingClientRect().top);
+                // console.log(context.isPointInPath(x,y),context.isPointInStroke(x, y));
+                context.fillRect(x, y, 50, 50);
+                
+            } 
         }
 
     </script>
@@ -22,6 +32,7 @@
 <body>
     <!--<div style="position: absolute; top: 50px; left: 50px;">-->
     <div>
+        <p>请点击屏幕</p>
         <canvas id="canvas" width="500" height="500">
             Your browser does not support the HTML 5 Canvas.
         </canvas>

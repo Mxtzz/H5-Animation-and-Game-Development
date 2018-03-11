@@ -14,6 +14,36 @@
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
             
+            //全局透明度
+            // context.globalAlpha=alpha;
+
+            //全局图像混合设置
+            // context.globalCompositeOperation='source-over | copy | destination-in | destination-out | destination-over | lighter | source-atop | source-in | source-out | xor';
+            
+            //图像混合类型
+            // source-over  默认
+            // source-atop 
+            // source-in 
+            // source-out 
+            // destination-over 
+            // destination-atop 
+            // destination-in 
+            // destination-out 
+            // lighter
+            // copy 
+            // xor
+            context.globalAlpha=0.5;//必须设置在绘制之前
+            context.fillStyle='black';
+            context.fillRect(10,10,200,200);
+            
+            context.fillStyle='red';
+            context.fillRect(1,1,50,50);
+            
+            context.globalCompositeOperation='destination-atop';
+            // context.globalCompositeOperation='source-atop';
+
+            context.fillRect(60,1,100,100);
+            
         }
 
     </script>

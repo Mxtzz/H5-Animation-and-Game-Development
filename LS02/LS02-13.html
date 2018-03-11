@@ -13,6 +13,30 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
+            //平移
+            //context.translate(x,y);
+            //旋转
+            //context.rotate(deg);
+            // 缩放
+            // context.scale(x, y);
+            var gr = context.createLinearGradient(50, 50, 150, 50);//过渡起点与终点坐标
+                context.lineWidth=5;
+                gr.addColorStop(0, 'rgb(255,0,0)');
+                gr.addColorStop(1, 'rgb(0,255,0)');
+                context.fillStyle=gr;
+                context.fillRect(50, 50, 100, 100);
+
+            context.translate(150, 0);
+            context.fillRect(50,50,100,100);
+
+            // context.rotate(Math.PI / 180 * 45);
+            // context.fillRect(50,50,100,100);
+            
+            context.scale(2, 2);
+            context.fillRect(50,50,100,100);
+            
+            // 矩阵变换
+            
             
         }
 

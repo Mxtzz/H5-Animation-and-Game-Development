@@ -14,6 +14,30 @@
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
             
+            //文本水平对齐
+            //context.textAlign = left|center|right
+            //文本垂直对齐
+            //context.textBaseline='top | hanging | middle | alphabetic | ideographic | bottom';
+            //文本度量
+            // context.measureText(text);
+            
+            context.font='30px sans-serif';
+            context.fillStyle='red';
+            context.strokeStyle='black';
+            
+            context.textAlign='center';
+            context.fillText('SamsungCenter', 200, 100);
+            
+            context.textAlign='left';
+            context.fillText('SamsungLeft', 200,150);
+
+            context.textAlign='right';
+            context.fillText('SamsungRight', 200, 200);
+
+            context.textBaseline='top';
+            context.fillText("top", 200, 300);
+            context.textBaseline='bottom';
+            context.fillText("bottom", 200, 300);
         }
 
     </script>

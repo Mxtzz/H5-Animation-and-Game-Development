@@ -13,7 +13,49 @@
         function canvasApp() {
             var theCanvas = document.getElementById('canvas');
             var context = theCanvas.getContext('2d');
-            
+
+            // 图案描边及填充//内容、样式
+            // var pattern = context.createPattern(Image|video, repetition);
+            // var pattern = context.createPattern(canvas, repetition);
+            // repetition: no-repeat
+            //             repeat
+            //             repeat-x
+            //             repeat-y 
+
+             drawScreen();
+            function drawScreenOne(){
+                var img = new Image();
+                            img.src = './images/fill_20x20.gif';
+                            img.onload = function(){
+                                var pattern = context.createPattern(img, 'repeat');
+                                // var pattern = context.createPattern(img, 'repeat-x');
+                                
+                                context.fillStyle=pattern;
+                                context.fillRect(0,0,200,200);
+                            }              
+            }
+           
+            function drawScreen() {
+                var offScreenCanvas = document.getElementById('canvasOffScreen');
+                var offScreenContext = offScreenCanvas.getContext('2d');
+                // offScreenContext.fillStyle='blue';//更改颜色
+                // offScreenContext.fillRect(5,5,40,40);
+
+                offScreenContext.beginPath();
+                offScreenContext.arc(25, 25, 15, Math.PI / 180 * 0, Math.PI / 180 * 90, false);
+                offScreenContext.fill();
+                offScreenContext.closePath();
+                
+                
+                
+                document.onclick = function(){
+                    var fillPattern = context.createPattern(offScreenCanvas,'repeat');
+                    context.fillStyle = fillPattern;
+                    context.fillRect(0,0,200,200);
+                }
+                
+            }
+
         }
 
     </script>
@@ -22,8 +64,11 @@
 <body>
     <!--<div style="position: absolute; top: 50px; left: 50px;">-->
     <div>
-        <canvas id="canvas" width="500" height="500">
+        <canvas id="canvas" width="200" height="200">
             Your browser does not support the HTML 5 Canvas.
+        </canvas>
+        <canvas id="canvasOffScreen" width="50" height="50" style="border:2px solid">
+
         </canvas>
     </div>
 </body>
