@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 绘制图像</title>
+    
+</head>
+
+<body>
+    <!--<div style="position: absolute; top: 50px; left: 50px;">-->
+    <div>
+        <canvas id="canvas" style="display:block;margin:50px auto;border:1px solid #aaa;">
+            您的浏览器尚不支持canvas
+        </canvas>
+    
+        <canvas id="offCanvas" style="display: none">
+        </canvas>
+    </div>
+    <script type="text/javascript">
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        
+        var offCanvas = document.getElementById("offCanvas");
+        var offContext = offCanvas.getContext("2d");
+        
+        var image = new Image();
+        var isMouseDown = false;//鼠标状态
+        var scale;//缩放比
+
+        window.onload = function () {
+            canvas.width = 580*0.5;
+            canvas.height = 330*0.5;
+
+            image.src = "./images/dog1.jpg";
+            image.onload = function(){
+                offCanvas.width = image.width;
+                offCanvas.height = image.height;
+                scale = offCanvas.width/canvas.width;
+                context.drawImage(image,0,0,canvas.width,canvas.height);
+                offContext.drawImage(image,0,0);
+            }
+        }
+        //计算坐标补偿
+        function windowToCanvas( x , y ){
+            var bbox = canvas.getBoundingClientRect();
+            return {x:x-bbox.left , y:y-bbox.top};
+        }
+
+        canvas.onmousedown = function(e){
+            //preventDefault() 方法阻止元素发生默认的行为（例如，当点击提交按钮时阻止对表单的提交）。
+            e.preventDefault();
+            isMouseDown = true;
+            point = windowToCanvas( e.clientX , e.clientY );
+            console.log( point.x , point.y );
+            drawCanvasWithMagnifier( true , point );
+        }
+
+        canvas.onmouseup = function(e){
+            e.preventDefault();
+            isMouseDown = false;
+            drawCanvasWithMagnifier( false );
+        }
+
+        canvas.onmouseout = function(e){
+            e.preventDefault();
+            isMouseDown = false;
+            drawCanvasWithMagnifier( false );
+        }
+
+        canvas.onmousemove = function(e){
+            e.preventDefault();
+            if( isMouseDown == true ){
+                point = windowToCanvas( e.clientX , e.clientY );
+                console.log( point.x , point.y );
+                drawCanvasWithMagnifier( true , point );
+            }
+        }
+
+        function drawCanvasWithMagnifier( isShowMagnifier , point ){
+            context.clearRect( 0 , 0 , canvas.width , canvas.height );
+            context.drawImage( image , 0 , 0 , canvas.width , canvas.height );
+            if( isShowMagnifier == true ){
+                drawMagnifier( point );
+            }
+        }
+
+        function drawMagnifier( point ){
+
+            var mr = 100;
+            var imageLG_cx = point.x * scale;
+            var imageLG_cy = point.y * scale;
+
+            //sourse x y
+            var sx = imageLG_cx - mr;
+            var sy = imageLG_cy - mr;
+            //destination x y
+            var dx = point.x - mr;
+            var dy = point.y - mr;
+
+            context.save();//保持状态
+            context.lineWidth = 5.0;
+            context.strokeStyle = "#fff";
+
+            context.beginPath();
+            context.arc( point.x , point.y , mr , 0 , Math.PI*2 , false );
+            context.stroke();
+            context.clip();
+            context.drawImage( offCanvas , sx , sy , 5*mr , 5*mr , dx , dy , 5*mr , 5*mr );//5倍
+            context.restore();
+        }
+        
+    </script>
+</body>
+
+</html>

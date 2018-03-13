@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 绘制图像</title>
+    
+</head>
+
+<body>
+    <!--<div style="position: absolute; top: 50px; left: 50px;">-->
+    <div>
+        <canvas id="canvasOne" style="display:block;margin:0 auto;border:1px solid #aaa;">
+            您的浏览器尚不支持canvas
+            </canvas>
+        <input type="range" id="scale-range" min = "0.5" max="3.0" step="0.01" value="1.0" style="display:block;margin:20px auto;width:800px" >
+    </div>
+    <script type="text/javascript">
+        var canvas = document.getElementById("canvasOne");
+        var context = canvas.getContext("2d");
+        var slider = document.getElementById("scale-range");
+        var image = new Image();
+
+        window.onload = function () {
+            canvas.width = 580 * 0.5;
+            canvas.height = 330 * 0.5;
+
+            var scale = slider.value;
+            image.src = "./images/dog1.jpg";
+            image.onload = function(){
+                drawImageByScale(scale);
+
+                slider.onmousemove = function(){
+                    scale = slider.value
+                    drawImageByScale(scale)
+                }
+            }
+        }
+        function drawImageByScale(scale){
+            var imageWidth = 580*0.5*scale;
+            var imageHeight = 330*0.5*scale;
+
+            x = canvas.width/2-imageWidth/2;
+            y = canvas.height/2-imageHeight/2;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(image, x, y, imageWidth, imageHeight);
+            
+        }      
+    </script>
+</body>
+
+</html>
