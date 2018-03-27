@@ -23,4 +23,44 @@ var StartLayer = cc.Layer.extend({
         this.addChild(menu);
 
     }
+
+    // onEnter:function(){
+    //     this._super();
+    //     // console.log(123);
+    //
+    // },
+    // onEnterTransitionDidFinish:function(){
+    //     this._super();
+    //
+    // },
+    // onExit:function(){
+    //     this._super();
+    //
+    // },
+    // onExitTransitionDidFinish:function(){
+    //     this._super();
+    //
+    // }
+
+});
+var BgLayer = cc.Layer.extend({
+    ctor:function(){
+        this._super();
+        var bglayer1 = new cc.LayerGradient(cc.color.RED,new cc.Color(255,0,0,0),cc.p(0,-1));
+        var bglayer2 = new cc.LayerGradient(cc.color.RED,new cc.Color(255,0,0,0),cc.p(-1,-1),
+            [{p:0,color:cc.color.YELLOW},
+                {p:.5,color:new cc.Color(0,0,0,0)},
+                {p:1,color:cc.color.BLUE}]);
+        // var layer = new cc.LayerColor(cc.color.GREEN);
+        this.addChild(bglayer1);
+    }
+});
+var StartScene = cc.Scene.extend({
+    onEnter:function () {
+        this._super();
+        var bglayer = new BgLayer();
+        this.addChild(bglayer);
+        var layer = new StartLayer();
+        this.addChild(layer);
+    }
 });
