@@ -32,7 +32,6 @@ var OverLayer = cc.Layer.extend({
         });
         zailaiMenuItem.x=size.width/2;
         zailaiMenuItem.y=size.height*0.25;
-        // this.addChild(startMenuItem);
 
         var menu = new cc.Menu(zailaiMenuItem);
         menu.x=0;
@@ -43,7 +42,7 @@ var OverLayer = cc.Layer.extend({
 });
 
 var OverScene = cc.Scene.extend({
-    onEnter:function () {
+    ctor:function () {
         this._super();
         var layer = new OverLayer();
         this.addChild(layer);
